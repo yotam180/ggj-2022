@@ -89,7 +89,8 @@ public class CameraAndGame : MonoBehaviour
         {
             float x = 2.5f * Random.Range(-10.0f, 10.0f);
             float y = 2.5f * Random.Range(-10.0f, 10.0f);
-            Instantiate(Resources.Load("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
+            GameObject obj = Instantiate(Resources.Load<GameObject>("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
+            obj.GetComponent<portals>().explosion = GameObject.Find("Explosion");
         }
     }
 
@@ -101,7 +102,6 @@ public class CameraAndGame : MonoBehaviour
     {
         int[] s = { 0, 0 };
         score = s;
-        Debug.Log(score.Length);
         float length = 45.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);

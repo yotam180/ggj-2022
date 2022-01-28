@@ -27,8 +27,6 @@ public class Orb : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("A");
-
         var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal); // TODO: Is this correct?
         direction = VecToAngle(reflectionVector);
         speed = Mathf.Min(5, speed - 0.2f * Time.deltaTime);
@@ -44,7 +42,6 @@ public class Orb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("B " + other.transform.name);
         direction = VecToAngle(other.transform.right);
         speed = Mathf.Min(10, speed + 1f);
         Debug.Log(direction);
