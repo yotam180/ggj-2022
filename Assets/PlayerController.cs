@@ -21,23 +21,26 @@ public class PlayerController : MonoBehaviour
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;
     }
 
+    public Vector3 GetDirection()
+    {
+        return new Vector3(Mathf.Cos(direction), 0, Mathf.Sin(direction));
+    }
+
     void Update()
     {
         if (Input.GetKey(CWKey))
         {
-            direction += turnSpeed * Time.deltaTime;
+            direction -= turnSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(CCWKey))
         {
-            direction -= turnSpeed * Time.deltaTime;
+            direction += turnSpeed * Time.deltaTime;
         }
 
         desiredMoveSpeed = Input.GetKey(SprintKey) ? maxMoveSpeed : moveSpeed;
         currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.95f * Time.deltaTime); // TODO: Fix this mechanic...
 
-        Vector3 moveDir = new Vector3(Mathf.Sin(direction), 0, Mathf.Cos(direction)) * currentMoveSpeed;
-        // transform.position += moveDir;
-        GetComponent<Rigidbody>().velocity = moveDir;
+        GetComponent<Rigidbody>().velocity = GetDirection() * currentMoveSpeed;
 
         if (Input.GetKeyDown(WallKey))
         {
@@ -65,11 +68,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other)
-    {        
-        if (other.gameObject.tag != "PlayerCollision") // TODO: Find a better way to check this
+    {
+        if (other.gameObject.GetComponent<Barrier>()?.lifetime < 0.1f)
         {
             return;
         }
+
+        var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal);
+        direction = Mathf.Atan2(reflectionVector.z, reflectionVector.x);
     }
 }
 
