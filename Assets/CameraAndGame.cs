@@ -48,7 +48,7 @@ public class CameraAndGame : MonoBehaviour
             {
                 if (smaller(p1[i] - p2[j], new Vector3(width, 1, width)))
                 {
-                    return j + 1;
+                    return j + 2;
                 }
             }
         }
@@ -58,7 +58,7 @@ public class CameraAndGame : MonoBehaviour
             {
                 if (smaller(p1[j] - p2[i], new Vector3(width, 1, width)))
                 {
-                    return j + 1;
+                    return j + 2;
                 }
             }
         }
@@ -81,10 +81,10 @@ public class CameraAndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float length = 20.0f;
+        float length = 60.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
-        List<List<Vector3>> locs1 = create_map(xrange, yrange);
-        List<List<Vector3>> locs2 = create_map(xrange, yrange, 15.0f, 15.0f, -1);
+        List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);
+        List<List<Vector3>> locs2 = create_map(xrange, yrange, length/3, length/3, -1);
 
         int l1 = Preprocess(locs1[0], locs2[1]);
         int l2 = Preprocess(locs1[1], locs2[0]);
