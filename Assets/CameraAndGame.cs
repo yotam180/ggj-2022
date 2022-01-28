@@ -9,6 +9,7 @@ public class CameraAndGame : MonoBehaviour
     const int num_portals = 5;
     const float timeD = 10.0f;
     float time_interval = timeD;
+    string[] crystals_map = { "02", "04", "07", "08" }; 
 
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
     {
@@ -81,6 +82,16 @@ public class CameraAndGame : MonoBehaviour
 
         last = transform.position;
     }
+    void CreatePortals()
+    {
+        for(int i = 0; i < num_portals; i++)
+        {
+            float x = 4 * Random.Range(-10.0f, 10.0f);
+            float y = 4 * Random.Range(-10.0f, 10.0f);
+            Instantiate(Resources.Load("Crystalsv" + crystals_map[i]), new Vector3(x, 0, y), Quaternion.identity);
+        }
+    }
+
 
 
 
@@ -99,17 +110,14 @@ public class CameraAndGame : MonoBehaviour
         {
             ConnectPoints(locs1[0][i - 1], locs1[0][i]);
             ConnectPoints(locs2[1][i - 1], locs2[1][i]);
-            //Instantiate(Resources.Load("WallCube"), locs1[0][i], Quaternion.identity);
-            //Instantiate(Resources.Load("WallCube"), locs2[1][i], Quaternion.identity);
+            
         }
         for (int i = 1; i <= l2; i++)
         {
             ConnectPoints(locs1[1][i - 1], locs1[1][i]);
             ConnectPoints(locs2[0][i - 1], locs2[0][i]);
-            //Instantiate(Resources.Load("WallCube"), locs1[1][i], Quaternion.identity);
-            //Instantiate(Resources.Load("WallCube"), locs2[0][i], Quaternion.identity);
         }
-
+        CreatePortals();
 
     }
 
