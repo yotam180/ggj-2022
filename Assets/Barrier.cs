@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
+    float disposeTime = 1.75f;
+
+    float lifetime = 0;
+
     void Start()
     {
-        Mesh m = new Mesh();
-        // m.vertices
+        
     }
 
     void Update()
     {
-        
+        lifetime += Time.deltaTime;
+        if (lifetime > disposeTime)
+        {
+            Destroy(gameObject);
+        }
     }
 }
