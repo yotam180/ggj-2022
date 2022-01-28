@@ -557,7 +557,7 @@ MonoBehaviour:
   CCWKey: 276
   SprintKey: 273
   WallKey: 32
-  turnSpeed: 5
+  turnSpeed: 10
   moveSpeed: 10
   maxMoveSpeed: 10
   lastWallPosition: {x: 0, y: 0, z: 0}
