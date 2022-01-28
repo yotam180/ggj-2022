@@ -6,6 +6,10 @@ public class CameraAndGame : MonoBehaviour
 {
     const float width = 0.4f;
 
+    const int num_portals = 5;
+    const float timeD = 10.0f;
+    float time_interval = timeD;
+
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
     {
         float d = 0.2f;
@@ -98,8 +102,10 @@ public class CameraAndGame : MonoBehaviour
         }
         for (int i = 1; i <= l2; i++)
         {
-            Instantiate(Resources.Load("WallCube"), locs1[1][i], Quaternion.identity);
-            Instantiate(Resources.Load("WallCube"), locs2[0][i], Quaternion.identity);
+            ConnectPoints(locs1[1][i - 1], locs1[1][i]);
+            ConnectPoints(locs2[0][i - 1], locs2[0][i]);
+            //Instantiate(Resources.Load("WallCube"), locs1[1][i], Quaternion.identity);
+            //Instantiate(Resources.Load("WallCube"), locs2[0][i], Quaternion.identity);
         }
 
 
@@ -108,6 +114,17 @@ public class CameraAndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float dx = 2*Random.Range(-10.0f, 10.0f);
+        float dy = 2*Random.Range(-10.0f, 10.0f);
+
+        if (this.time_interval > 0.0f)
+        {
+            this.time_interval -= Time.deltaTime;
+        }
+        else
+        {
+            this.time_interval = timeD;
+            Instantiate(Resources.Load("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+        }
     }
 }
