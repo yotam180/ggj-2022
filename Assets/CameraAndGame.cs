@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraAndGame : MonoBehaviour
 {
-    const float width = 0.4f;
+    const float width = 0.1f;
 
     const int num_portals = 5;
     const float timeD = 10.0f;
@@ -12,7 +12,7 @@ public class CameraAndGame : MonoBehaviour
 
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
     {
-        float d = 0.2f;
+        float d = 2f;
         float s = Random.Range(.0f, 1.5f), bias = 0; // change scale and bias
         float x0 = xrange[0], y0 = yrange[0];
         List<Vector3> xlocations = new List<Vector3>();
@@ -85,7 +85,7 @@ public class CameraAndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float length = 60.0f;
+        float length = 45.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);
         List<List<Vector3>> locs2 = create_map(xrange, yrange, length/3, length/3, -1);
@@ -124,7 +124,7 @@ public class CameraAndGame : MonoBehaviour
         else
         {
             this.time_interval = timeD;
-            Instantiate(Resources.Load("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
         }
     }
 }

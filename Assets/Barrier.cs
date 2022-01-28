@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    float disposeTime = 1.75f;
+    float disposeTime = 5f;
 
     public float lifetime = 0;
 
