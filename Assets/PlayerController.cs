@@ -33,26 +33,32 @@ public class PlayerController : MonoBehaviour
         }
 
         desiredMoveSpeed = Input.GetKey(SprintKey) ? maxMoveSpeed : moveSpeed;
-        currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.7f * Time.deltaTime); // TODO: Fix this mechanic...
+        currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.95f * Time.deltaTime); // TODO: Fix this mechanic...
 
         Vector3 moveDir = new Vector3(Mathf.Sin(direction), 0, Mathf.Cos(direction)) * Time.deltaTime * currentMoveSpeed;
         transform.position += moveDir;
 
-        if (Input.GetKeyDown(WallKey))
-        {
-            timeSinceLastWall = 0;
-            lastWallPosition = transform.position;
-        }
-        else if (Input.GetKey(WallKey))
+        //if (Input.GetKeyDown(WallKey))
+        //{
+        //    timeSinceLastWall = 0;
+        //    lastWallPosition = transform.position;
+        //}
+        /*else */if (true)
         {
             timeSinceLastWall += Time.deltaTime;
-            if (timeSinceLastWall > 0.2f)
+            if (timeSinceLastWall > 0.1f)
             {
                 timeSinceLastWall = 0;
                 Debug.Log("Lastposition: " + lastWallPosition + " to " + transform.position);
-                var obj = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity);
-                var comp = obj.AddComponent<LineRenderer>();
-                comp.SetPositions(new[] { lastWallPosition, transform.position });
+
+                var alpha = -Mathf.Atan2(transform.position.z - lastWallPosition.z, transform.position.x - lastWallPosition.x);
+                var rotation = new Vector3(0, alpha * 180 / Mathf.PI, 0);
+                var barrier = Resources.Load<GameObject>("Barrier");
+                var loc = (lastWallPosition + transform.position) / 2;
+                var size = new Vector3((lastWallPosition - transform.position).magnitude, 1, 0.3f);
+                var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
+                obj.transform.localScale = size;
+
                 lastWallPosition = transform.position;
             }
         }
