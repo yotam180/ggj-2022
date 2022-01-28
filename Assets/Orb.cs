@@ -27,6 +27,6 @@ public class Orb : MonoBehaviour
         var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal); // TODO: Is this correct?
         direction = Mathf.Atan2(reflectionVector.z, reflectionVector.x); // TODO: Is this correct?
 
-        speed = Mathf.Min(speed + 0.1f, 6.5f);
+        speed = Mathf.Min(speed + 10f, 12f);
     }
 }

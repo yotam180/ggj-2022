@@ -35,15 +35,16 @@ public class PlayerController : MonoBehaviour
         desiredMoveSpeed = Input.GetKey(SprintKey) ? maxMoveSpeed : moveSpeed;
         currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.95f * Time.deltaTime); // TODO: Fix this mechanic...
 
-        Vector3 moveDir = new Vector3(Mathf.Sin(direction), 0, Mathf.Cos(direction)) * Time.deltaTime * currentMoveSpeed;
-        transform.position += moveDir;
+        Vector3 moveDir = new Vector3(Mathf.Sin(direction), 0, Mathf.Cos(direction)) * currentMoveSpeed;
+        // transform.position += moveDir;
+        GetComponent<Rigidbody>().velocity = moveDir;
 
-        //if (Input.GetKeyDown(WallKey))
-        //{
-        //    timeSinceLastWall = 0;
-        //    lastWallPosition = transform.position;
-        //}
-        /*else */if (true)
+        if (Input.GetKeyDown(WallKey))
+        {
+            timeSinceLastWall = 0;
+            lastWallPosition = transform.position;
+        }
+        else if (Input.GetKey(WallKey))
         {
             timeSinceLastWall += Time.deltaTime;
             if (timeSinceLastWall > 0.1f)
@@ -54,12 +55,20 @@ public class PlayerController : MonoBehaviour
                 var rotation = new Vector3(0, alpha * 180 / Mathf.PI, 0);
                 var barrier = Resources.Load<GameObject>("Barrier");
                 var loc = (lastWallPosition + transform.position) / 2;
-                var size = new Vector3((lastWallPosition - transform.position).magnitude, 1, 0.6f);
+                var size = new Vector3((lastWallPosition - transform.position).magnitude, 1, 0.1f);
                 var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
                 obj.transform.localScale = size;
 
                 lastWallPosition = transform.position;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {        
+        if (other.gameObject.tag != "PlayerCollision") // TODO: Find a better way to check this
+        {
+            return;
         }
     }
 }

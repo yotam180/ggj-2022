@@ -8,11 +8,6 @@ public class Barrier : MonoBehaviour
 
     float lifetime = 0;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         lifetime += Time.deltaTime;
