@@ -44,7 +44,7 @@ public class CameraAndGame : MonoBehaviour
     void Start()
     {
         float length = 15.0f;
-        float[] xrange = { .0f, 17.0f }, yrange = { .0f, 17.0f };
+        float[] xrange = { .0f, 20.0f }, yrange = { .0f, 20.0f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange);
         List<List<Vector3>> locs2 = create_map(xrange, yrange, 15.0f, 15.0f, -1);
         int blocked = 0;
@@ -54,20 +54,31 @@ public class CameraAndGame : MonoBehaviour
             {
                 Instantiate(Resources.Load("WallCube"), locs1[0][i], Quaternion.identity);
                 Instantiate(Resources.Load("WallCube"), locs2[1][i], Quaternion.identity);
-                if (smaller(locs1[0][i] - locs2[1][i], new Vector3(1, 1, 1)))
+                //Debug.Log(locs1[0][i] - locs2[1][i]);
+                for(int j = i; j > 0; j--)
                 {
-                    Debug.Log(locs2[0][i]);
-                    blocked += 1;
+                    if (smaller(locs1[0][i] - locs2[1][j], new Vector3(1, 1, 1)))
+                    {
+                        Debug.Log(locs2[0][i]);
+                        blocked += 1;
+                        break;
+                    }
                 }
+                
             }
            if (blocked < 2)
             {
                 var obj2 = Instantiate(Resources.Load("WallCube"), locs1[1][i], Quaternion.identity);
                 var obj4 = Instantiate(Resources.Load("WallCube"), locs2[0][i], Quaternion.identity);
-                if (smaller(locs1[1][i] - locs2[0][i], new Vector3(1, 1, 1)))
+                //Debug.Log(locs1[1][i] - locs2[0][i]);
+                for (int j = i; j > 0; j--)
                 {
-                    Debug.Log(locs1[1][i]);
-                    blocked += 2;
+                    if (smaller(locs1[1][i] - locs2[0][j], new Vector3(1, 1, 1)))
+                    {
+                        Debug.Log(locs1[1][i]);
+                        blocked += 2;
+                        break;
+                    }
                 }
             }
 
