@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CameraAndGame : MonoBehaviour
 {
+    public int score;
     const float width = 2.0f;
 
-    const int num_portals = 5;
+    const int num_portals = 8;
     const float timeD = 10.0f;
     float time_interval = timeD;
     string[] crystals_map = { "02", "04", "07", "08" }; 
@@ -86,9 +87,9 @@ public class CameraAndGame : MonoBehaviour
     {
         for(int i = 0; i < num_portals; i++)
         {
-            float x = 4 * Random.Range(-10.0f, 10.0f);
-            float y = 4 * Random.Range(-10.0f, 10.0f);
-            Instantiate(Resources.Load("Crystalsv" + crystals_map[i]), new Vector3(x, 0, y), Quaternion.identity);
+            float x = 2.5f * Random.Range(-10.0f, 10.0f);
+            float y = 2.5f * Random.Range(-10.0f, 10.0f);
+            Instantiate(Resources.Load("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
         }
     }
 
