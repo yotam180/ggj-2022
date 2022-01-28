@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
             direction += turnSpeed * Time.deltaTime;
         }
 
+        if (Input.GetKeyDown(SprintKey))
+        {
+            desiredMoveSpeed = maxMoveSpeed;
+        }
+
         desiredMoveSpeed = Input.GetKey(SprintKey) ? maxMoveSpeed : moveSpeed;
         currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.95f * Time.deltaTime); // TODO: Fix this mechanic...
 
