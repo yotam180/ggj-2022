@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraAndGame : MonoBehaviour
 {
-    const float width = 0.1f;
+    const float width = 2.0f;
 
     const int num_portals = 5;
     const float timeD = 10.0f;
@@ -75,12 +75,14 @@ public class CameraAndGame : MonoBehaviour
         var rotation = new Vector3(0, alpha * 180 / Mathf.PI, 0);
         var barrier = Resources.Load<GameObject>("WallCube");
         var loc = (last + first) / 2;
-        var size = new Vector3((last - first).magnitude, 1, width);
+        var size = new Vector3((last - first).magnitude, 1, 0.1f);
         var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
         obj.transform.localScale = size;
 
         last = transform.position;
     }
+
+
 
     // Start is called before the first frame update
     void Start()
