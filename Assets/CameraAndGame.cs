@@ -57,11 +57,14 @@ public class CameraAndGame : MonoBehaviour
                 //Debug.Log(locs1[0][i] - locs2[1][i]);
                 for(int j = i; j > 0; j--)
                 {
-                    if (smaller(locs1[0][i] - locs2[1][j], new Vector3(1, 1, 1)))
+                    for (int k = i; k > 0; k--)
                     {
-                        Debug.Log(locs2[0][i]);
-                        blocked += 1;
-                        break;
+                        if (smaller(locs1[0][k] - locs2[1][j], new Vector3(1, 1, 1)))
+                        {
+                            Debug.Log(locs2[0][i]);
+                            blocked += 1;
+                            break;
+                        }
                     }
                 }
                 
@@ -73,11 +76,14 @@ public class CameraAndGame : MonoBehaviour
                 //Debug.Log(locs1[1][i] - locs2[0][i]);
                 for (int j = i; j > 0; j--)
                 {
-                    if (smaller(locs1[1][i] - locs2[0][j], new Vector3(1, 1, 1)))
+                    for (int k = i; k > 0; k--)
                     {
-                        Debug.Log(locs1[1][i]);
-                        blocked += 2;
-                        break;
+                        if (smaller(locs1[1][k] - locs2[0][j], new Vector3(1, 1, 1)))
+                        {
+                            Debug.Log(locs1[1][i]);
+                            blocked += 2;
+                            break;
+                        }
                     }
                 }
             }
