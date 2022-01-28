@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Orb : MonoBehaviour
 {
@@ -26,10 +27,27 @@ public class Orb : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal); // TODO: Is this correct?
-        direction = Mathf.Atan2(reflectionVector.z, reflectionVector.x); // TODO: Is this correct?
+        Debug.Log("A");
 
-        speed = Mathf.Min(speed + 10f, 12f);
+        var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal); // TODO: Is this correct?
+        direction = VecToAngle(reflectionVector);
+        speed = Mathf.Min(5, speed - 0.2f * Time.deltaTime);
+
+        // speed = Mathf.Min(speed + 10f, 12f);
+    }
+
+    static float VecToAngle(Vector3 dir)
+    {
+        return Mathf.Atan2(dir.z, dir.x);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("B " + other.transform.name);
+        direction = VecToAngle(other.transform.right);
+        speed = Mathf.Min(10, speed + 1f);
+        Debug.Log(direction);
     }
 }
     

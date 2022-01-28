@@ -16,6 +16,16 @@ public class PlayerController : MonoBehaviour
     float currentMoveSpeed;
     float direction;
 
+    public int maxHelp=100;
+    public int currentHelp;
+    // public PlayerBar playerBar;
+
+    void Awake()
+    {
+        currentHelp = 0;
+        // playerBar?.SetMaxHelp(maxHelp);
+    }
+    
     void Start()
     {
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;

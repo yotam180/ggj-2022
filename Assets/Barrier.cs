@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Barrier : MonoBehaviour
 {
-    float disposeTime = 5f;
+    float disposeTime = 2f;
 
     public float lifetime = 0;
     public bool player = false; //false: first player, true: second player
@@ -27,9 +28,10 @@ public class Barrier : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void OnCollisionEnter(Collision collision)
+
+    public void OnTriggerEnter(Collider collider)
     {
-        var obj = collision.gameObject;
+        var obj = collider.gameObject;
         if (obj.name.Contains("Orb"))
         {
             obj.GetComponent<Orb>().player = player ? 2 : 1; //second player 2 first player 1
