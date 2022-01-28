@@ -7,6 +7,8 @@ public class Orb : MonoBehaviour
     public float speed;
     public float direction;
 
+    public int player = 0; //0 : Neutral, 1: Player, 2: Second Player (Player (1))
+
     void Start()
     {
         

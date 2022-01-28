@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraAndGame : MonoBehaviour
 {
-    public int score;
+    public int[] score = { 0, 0 };
     const float width = 2.0f;
 
     const int num_portals = 8;
-    const float timeD = 10.0f;
+    const float timeD = 10f;
     float time_interval = timeD;
     string[] crystals_map = { "02", "04", "07", "08" }; 
 
@@ -99,6 +99,9 @@ public class CameraAndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int[] s = { 0, 0 };
+        score = s;
+        Debug.Log(score.Length);
         float length = 45.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);
@@ -134,6 +137,7 @@ public class CameraAndGame : MonoBehaviour
         }
         else
         {
+            Debug.Log(score[0]);
             this.time_interval = timeD;
             Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
         }

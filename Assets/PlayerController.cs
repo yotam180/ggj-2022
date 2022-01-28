@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
                 var size = new Vector3((lastWallPosition - transform.position).magnitude, 1, 0.1f);
                 var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
                 obj.transform.localScale = size;
+                obj.GetComponent<Barrier>().player = gameObject.name.Contains("(1)"); //true for second player
 
                 lastWallPosition = transform.position;
             }
