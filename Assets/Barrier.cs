@@ -6,15 +6,20 @@ public class Barrier : MonoBehaviour
 {
     float disposeTime = 1.75f;
 
-    float lifetime = 0;
+    public float lifetime = 0;
 
-    void Start()
+    private void Start()
     {
-        
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     void Update()
     {
+        if (lifetime > 0.1f)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+
         lifetime += Time.deltaTime;
         if (lifetime > disposeTime)
         {
