@@ -30,3 +30,4 @@ public class Orb : MonoBehaviour
         speed = Mathf.Min(speed + 10f, 12f);
     }
 }
+    
