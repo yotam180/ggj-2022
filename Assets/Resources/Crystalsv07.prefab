@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 0}
+  bloop: {fileID: 8300000, guid: 786686bfcbaf09b4eb364fb83898f853, type: 3}
 --- !u!1 &7129044824951781506
 GameObject:
   m_ObjectHideFlags: 0
