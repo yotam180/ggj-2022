@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public int currentHelp;
     // public PlayerBar playerBar;
 
+    public GameObject BarrierFX;
+    GameObject currentBarrierFX;
+
     void Awake()
     {
         currentHelp = 0;
@@ -61,6 +64,8 @@ public class PlayerController : MonoBehaviour
         {
             timeSinceLastWall = 0;
             lastWallPosition = transform.position;
+
+            currentBarrierFX = Instantiate(BarrierFX, transform.position, Quaternion.identity);
         }
         else if (Input.GetKey(WallKey))
         {
@@ -80,6 +85,12 @@ public class PlayerController : MonoBehaviour
 
                 lastWallPosition = transform.position;
             }
+
+            currentBarrierFX.transform.position = transform.position;
+        }
+        else if (Input.GetKeyUp(WallKey))
+        {
+            currentBarrierFX = null;
         }
     }
 
