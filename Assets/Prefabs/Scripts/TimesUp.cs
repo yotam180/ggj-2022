@@ -25,11 +25,12 @@ public class TimesUp : MonoBehaviour
         var player1Score = GameObject.Find("Directional Light").GetComponent<CameraAndGame>().Player1Score;
         var player2Score = GameObject.Find("Directional Light").GetComponent<CameraAndGame>().Player2Score;
 
-        PlayerScoreText.text = ($"Player 1: {player1Score}\nPlayer 2: {player2Score}");
+        PlayerScoreText.text = ($"Player 1: {player1Score} points\nPlayer 2: {player2Score} points");
     }
 
     public void NewGame()
     {
+        TimeIsUp = false;
         Debug.Log("Loadng game...");
         Time.timeScale = 1f; //Because i paused the game, the time is 0. I need to get it back to normal
         SceneManager.LoadScene(1);
