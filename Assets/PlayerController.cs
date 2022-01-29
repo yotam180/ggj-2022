@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public int maxHelp=100;
     public int currentHelp;
-    // public PlayerBar playerBar;
+    //public PlayerBar playerBar;
 
     public GameObject BarrierFX;
     GameObject currentBarrierFX;
@@ -26,10 +26,11 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         currentHelp = 0;
-        // playerBar?.SetMaxHelp(maxHelp);
+        //playerBar.SetMaxHelp(maxHelp);
     }
     
     void Start()
+
     {
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;
     }

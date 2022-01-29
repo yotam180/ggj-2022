@@ -42,8 +42,6 @@ public class portals : MonoBehaviour
             obj.transform.position = new Vector3(obj.transform.position.x, 2, obj.transform.position.z);
             Destroy(obj.GetComponent<Orb>());
             Destroy(obj);
-
-
         }
 
     }
