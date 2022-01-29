@@ -84,7 +84,8 @@ public class PlayerController : MonoBehaviour
                 lastWallPosition = transform.position;
             }
 
-            currentBarrierFX?.transform.position = transform.position;
+            if (currentBarrierFX != null)
+                currentBarrierFX.transform.position = transform.position;
         }
         else if (Input.GetKeyUp(WallKey) || currentStamina <= 0)
         {

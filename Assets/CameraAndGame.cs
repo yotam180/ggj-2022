@@ -16,11 +16,14 @@ public class CameraAndGame : MonoBehaviour
 
     public GameObject scoreText;
 
+    public StressReceiver cameraShake;
+
     Color[] colors = { Color.red, Color.white, Color.yellow };
 
     public void UpdateScores()
     {
         scoreText.GetComponent<TextMeshProUGUI>().SetText($"Score P1: {score[0]}\nScore P2: {score[1]}");
+        cameraShake.InduceStress(0.6f);
     }
 
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
