@@ -2528,6 +2528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0000000000000000
+  scoreText: {fileID: 0}
 --- !u!1 &712104812
 GameObject:
   m_ObjectHideFlags: 0
@@ -7402,7 +7403,7 @@ MonoBehaviour:
   maxMoveSpeed: 10
   lastWallPosition: {x: 0, y: 0, z: 0}
   timeSinceLastWall: 0
-  maxStamina: 100
+  maxStamina: 3
   currentStamina: 0
   staminaBar: {fileID: 1497103973}
   BarrierFX: {fileID: 0}

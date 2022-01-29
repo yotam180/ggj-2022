@@ -84,18 +84,17 @@ public class PlayerController : MonoBehaviour
                 lastWallPosition = transform.position;
             }
 
-            currentBarrierFX.transform.position = transform.position;
+            currentBarrierFX?.transform.position = transform.position;
         }
         else if (Input.GetKeyUp(WallKey) || currentStamina <= 0)
         {
             currentBarrierFX = null;
+            ChangeStamina(Time.deltaTime);
         }
         else
         {
             ChangeStamina(Time.deltaTime);
         }
-
-        Debug.Log(currentStamina);
     }
 
     private void OnCollisionEnter(Collision other)

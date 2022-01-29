@@ -36,6 +36,7 @@ public class portals : MonoBehaviour
             if (player > 0)
             {
                 GameObject.Find("Directional Light").GetComponent<CameraAndGame>().score[player - 1] += factor;
+                GameObject.Find("Directional Light").GetComponent<CameraAndGame>().UpdateScores();
             }
             // Destroy orb clone
             obj.transform.position = new Vector3(obj.transform.position.x, 2, obj.transform.position.z);
