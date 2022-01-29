@@ -9,7 +9,6 @@ public class portals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(explosion.name);
     }
 
     // Update is called once per frame

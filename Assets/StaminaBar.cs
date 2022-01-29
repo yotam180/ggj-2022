@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
+    public float MaxStamina;
+
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public void SetMaxStamina(int stamina)
+    public void SetMaxStamina(float stamina)
     {
         slider.maxValue = stamina;
         slider.value = stamina;
+        MaxStamina = stamina;
 
         fill.color = gradient.Evaluate(1f);
     }
 
-    public void SetStamina(int stamina)
+    public void SetStamina(float stamina)
     {
         slider.value = stamina;
 

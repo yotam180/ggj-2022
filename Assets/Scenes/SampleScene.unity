@@ -773,10 +773,10 @@ MonoBehaviour:
   WallKey: 32
   turnSpeed: 10
   moveSpeed: 10
-  maxMoveSpeed: 10
+  maxMoveSpeed: 15
   lastWallPosition: {x: 0, y: 0, z: 0}
   timeSinceLastWall: 0
-  maxStamina: 100
+  maxStamina: 3
   currentStamina: 0
   staminaBar: {fileID: 414061382}
   BarrierFX: {fileID: 2824460619000463357, guid: d20134db3ad06e147969105bd03a6c20, type: 3}
@@ -1598,6 +1598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfa5b3aa7965b44aaeeb08facd5588c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxStamina: 0
   slider: {fileID: 414061381}
   gradient:
     serializedVersion: 2
@@ -5957,6 +5958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfa5b3aa7965b44aaeeb08facd5588c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxStamina: 0
   slider: {fileID: 1497103972}
   gradient:
     serializedVersion: 2

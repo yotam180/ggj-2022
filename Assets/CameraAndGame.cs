@@ -140,7 +140,6 @@ public class CameraAndGame : MonoBehaviour
         else
         {
             SoundsManager.PlaySound("orbHit");
-            Debug.Log(score[0]);
             this.time_interval = timeD;
             var obj = Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
             obj.GetComponentInChildren<ParticleSystem>().startColor = colors[(int)(Random.Range(0.0f, 2.99f))];
