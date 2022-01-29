@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class SoundsManager : MonoBehaviour
 {
-    public static AudioClip orbHit;
+    public static AudioClip OrbHit;
+    public static AudioClip Goal;
+
     static AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
     {
-        orbHit = Resources.Load<AudioClip>("orbHit");
+        OrbHit = Resources.Load<AudioClip>("orbHit");
+        Goal = Resources.Load<AudioClip>("Goal");
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -19,13 +22,8 @@ public class SoundsManager : MonoBehaviour
         
     }
 
-    public static void PlaySound(string clip)
+    public static void PlaySound(AudioClip clip)
     {
-        switch(clip)
-        {
-            case "orbHit":
-                audioSrc.PlayOneShot(orbHit);
-                break;
-        }
+        audioSrc.PlayOneShot(clip);
     }
 }

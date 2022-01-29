@@ -18,14 +18,15 @@ public class portals : MonoBehaviour
     }
     public void OnCollisionEnter(Collision collision)
     {
-        SoundsManager.PlaySound("orbHit");
         var obj = collision.gameObject;
         string name = obj.name;
         if(name.ToLower().Contains("orb"))
         {
 
-            // Create a tiny sparkle
-            explosion.transform.localScale = new Vector3(10, 10, 10);
+            SoundsManager.PlaySound(SoundsManager.Goal);
+
+            // Create a large sparkle
+            explosion.transform.localScale = new Vector3(20, 20, 20);
             Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
             // Add score
             var player = obj.GetComponent<Orb>().player;

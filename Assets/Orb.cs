@@ -43,7 +43,7 @@ public class Orb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SoundsManager.PlaySound("orbHit");
+        SoundsManager.PlaySound(SoundsManager.OrbHit);
         direction = VecToAngle(other.transform.right);
         speed = Mathf.Min(10, speed + 1f);
     }
