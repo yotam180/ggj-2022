@@ -18,7 +18,12 @@ public class PlayerController : MonoBehaviour
 
     public int maxHelp=100;
     public int currentHelp;
+<<<<<<< HEAD
     //public PlayerBar playerBar;
+=======
+    public PlayerBar playerBar;
+    // public PlayerBar playerBar;
+>>>>>>> 8da25d341dde2091333dd0060327ebcc6c1c341c
 
     public GameObject BarrierFX;
     GameObject currentBarrierFX;
@@ -26,13 +31,18 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         currentHelp = 0;
+<<<<<<< HEAD
         //playerBar.SetMaxHelp(maxHelp);
+=======
+        playerBar?.SetMaxHelp(maxHelp);
+>>>>>>> 8da25d341dde2091333dd0060327ebcc6c1c341c
     }
     
     void Start()
 
     {
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;
+        
     }
 
     public Vector3 GetDirection()
@@ -55,6 +65,12 @@ public class PlayerController : MonoBehaviour
         {
             desiredMoveSpeed = maxMoveSpeed;
         }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            AddHelp(10);
+        }
+
 
         desiredMoveSpeed = Input.GetKey(SprintKey) ? maxMoveSpeed : moveSpeed;
         currentMoveSpeed = Mathf.Lerp(currentMoveSpeed, desiredMoveSpeed, 0.95f * Time.deltaTime); // TODO: Fix this mechanic...
@@ -104,6 +120,13 @@ public class PlayerController : MonoBehaviour
 
         var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal);
         direction = Mathf.Atan2(reflectionVector.z, reflectionVector.x);
+    }
+
+    void AddHelp(int help)
+    {
+        currentHelp += help;
+
+        playerBar.SetHelp(currentHelp);
     }
 }
 
