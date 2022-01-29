@@ -18,12 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public int maxHelp=100;
     public int currentHelp;
-<<<<<<< HEAD
-    //public PlayerBar playerBar;
-=======
     public PlayerBar playerBar;
     // public PlayerBar playerBar;
->>>>>>> 8da25d341dde2091333dd0060327ebcc6c1c341c
 
     public GameObject BarrierFX;
     GameObject currentBarrierFX;
@@ -31,11 +27,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         currentHelp = 0;
-<<<<<<< HEAD
-        //playerBar.SetMaxHelp(maxHelp);
-=======
-        playerBar?.SetMaxHelp(maxHelp);
->>>>>>> 8da25d341dde2091333dd0060327ebcc6c1c341c
+        playerBar.SetMaxHelp(maxHelp);
     }
     
     void Start()
