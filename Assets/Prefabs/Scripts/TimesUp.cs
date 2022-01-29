@@ -6,6 +6,8 @@ public class TimesUp : MonoBehaviour
     public static bool TimeIsUp = false;
     public GameObject timeUpUI;
 
+    public UnityEngine.UI.Text PlayerScoreText;
+
     private void Update()
     {
         if (Timer.timerActive == false)
@@ -19,6 +21,11 @@ public class TimesUp : MonoBehaviour
     {
         timeUpUI.SetActive(true);
         Time.timeScale = 0f; //Pause time
+
+        var player1Score = GameObject.Find("Directional Light").GetComponent<CameraAndGame>().Player1Score;
+        var player2Score = GameObject.Find("Directional Light").GetComponent<CameraAndGame>().Player2Score;
+
+        PlayerScoreText.text = ($"Player 1: {player1Score}\nPlayer 2: {player2Score}");
     }
 
     public void NewGame()

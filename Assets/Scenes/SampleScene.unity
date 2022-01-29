@@ -1061,7 +1061,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.41960788, g: 1, b: 0.9823923, a: 1}
+      key0: {r: 0.17817727, g: 0.5188679, b: 0.5096601, a: 1}
       key1: {r: 0.23921567, g: 0.7395253, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -3847,6 +3847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUpUI: {fileID: 268372211}
+  PlayerScoreText: {fileID: 428880805}
 --- !u!1 &825128807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,7 +5049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae7febc801f7ec4fb0207422c5d9e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMinutes: 1
+  startMinutes: 0
   currentTimeText: {fileID: 830485802}
 --- !u!1 &1110325661
 GameObject:
@@ -8387,7 +8388,7 @@ MonoBehaviour:
   maxStamina: 3
   currentStamina: 0
   staminaBar: {fileID: 1497103973}
-  BarrierFX: {fileID: 2824460619000463357, guid: d20134db3ad06e147969105bd03a6c20, type: 3}
+  BarrierFX: {fileID: 2824460619000463357, guid: 283120aa71cf54a459d348d73cce8f3f, type: 3}
 --- !u!135 &1965841945
 SphereCollider:
   m_ObjectHideFlags: 0

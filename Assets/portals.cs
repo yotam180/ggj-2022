@@ -22,6 +22,8 @@ public class portals : MonoBehaviour
         string name = obj.name;
         if(name.ToLower().Contains("orb"))
         {
+            SoundsManager.PlaySound(SoundsManager.Goal);
+
             // Create a large sparkle
             explosion.transform.localScale = new Vector3(20, 20, 20);
             Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
@@ -34,7 +36,6 @@ public class portals : MonoBehaviour
             if (player > 0)
             {
                 GameObject.Find("Directional Light").GetComponent<CameraAndGame>().score[player - 1] += factor;
-                SoundsManager.PlaySound(SoundsManager.Goal);
                 GameObject.Find("Directional Light").GetComponent<CameraAndGame>().UpdateScores();
             }
             // Destroy orb clone

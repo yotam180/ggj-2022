@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Barrier : MonoBehaviour
 {
-    float disposeTime = 10f;
+    float disposeTime = 2f;
 
     public float lifetime = 0;
     public bool player = false; //false: first player, true: second player

@@ -20,6 +20,9 @@ public class CameraAndGame : MonoBehaviour
 
     Color[] colors = { Color.red, Color.white, Color.yellow };
 
+    public int Player1Score => score[0];
+    public int Player2Score => score[1];
+
     public void UpdateScores()
     {
         scoreText.GetComponent<TextMeshProUGUI>().SetText($"Score P1: {score[0]}\nScore P2: {score[1]}");
