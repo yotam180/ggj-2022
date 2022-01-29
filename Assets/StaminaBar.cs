@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBar : MonoBehaviour
+public class StaminaBar : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public void SetMaxHelp(int help)
+    public void SetMaxStamina(int stamina)
     {
-        slider.maxValue = help;
-        slider.value = 0;
+        slider.maxValue = stamina;
+        slider.value = stamina;
 
         fill.color = gradient.Evaluate(1f);
     }
 
-    public void SetHelp(int help)
+    public void SetStamina(int stamina)
     {
-        slider.value = help;
+        slider.value = stamina;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }

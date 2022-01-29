@@ -16,25 +16,19 @@ public class PlayerController : MonoBehaviour
     float currentMoveSpeed;
     float direction;
 
-    public int maxHelp=100;
-    public int currentHelp;
-    //public PlayerBar playerBar;
-    // public PlayerBar playerBar;
+    public int maxStamina=100;
+    public int currentStamina;
+    public StaminaBar staminaBar;
 
     public GameObject BarrierFX;
     GameObject currentBarrierFX;
-
-    void Awake()
-    {
-        currentHelp = 0;
-        //playerBar.SetMaxHelp(maxHelp);
-    }
     
     void Start()
 
     {
+        currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;
-        
     }
 
     public Vector3 GetDirection()
@@ -60,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.F))
         {
-            AddHelp(10);
+            DecreaseStamina(10);
         }
 
 
@@ -114,11 +108,11 @@ public class PlayerController : MonoBehaviour
         direction = Mathf.Atan2(reflectionVector.z, reflectionVector.x);
     }
 
-    void AddHelp(int help)
+    void DecreaseStamina(int stamina)
     {
-        currentHelp += help;
+        currentStamina -= stamina;
 
-        //playerBar.SetHelp(currentHelp);
+        staminaBar.SetStamina(currentStamina);
     }
 }
 
