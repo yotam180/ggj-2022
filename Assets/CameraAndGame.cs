@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class CameraAndGame : MonoBehaviour
 {
-    const float width = 0.1f;
+    public int[] score = { 0, 0 };
+    const float width = 2.0f;
 
-    const int num_portals = 5;
-    const float timeD = 10.0f;
+    const int num_portals = 8;
+    const float timeD = 5.0f;
     float time_interval = timeD;
+    string[] crystals_map = { "02", "04", "07", "08" };
+
+    Color[] colors = { Color.red, Color.white, Color.yellow };
 
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
     {
@@ -75,16 +79,31 @@ public class CameraAndGame : MonoBehaviour
         var rotation = new Vector3(0, alpha * 180 / Mathf.PI, 0);
         var barrier = Resources.Load<GameObject>("WallCube");
         var loc = (last + first) / 2;
-        var size = new Vector3((last - first).magnitude, 1, width);
+        var size = new Vector3((last - first).magnitude, 1, 0.1f);
         var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
         obj.transform.localScale = size;
 
         last = transform.position;
     }
+    void CreatePortals()
+    {
+        for(int i = 0; i < num_portals; i++)
+        {
+            float x = 2.5f * Random.Range(-10.0f, 10.0f);
+            float y = 2.5f * Random.Range(-10.0f, 10.0f);
+            GameObject obj = Instantiate(Resources.Load<GameObject>("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
+            obj.GetComponent<portals>().explosion = GameObject.Find("Explosion");
+        }
+    }
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        int[] s = { 0, 0 };
+        score = s;
         float length = 45.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);
@@ -97,17 +116,14 @@ public class CameraAndGame : MonoBehaviour
         {
             ConnectPoints(locs1[0][i - 1], locs1[0][i]);
             ConnectPoints(locs2[1][i - 1], locs2[1][i]);
-            //Instantiate(Resources.Load("WallCube"), locs1[0][i], Quaternion.identity);
-            //Instantiate(Resources.Load("WallCube"), locs2[1][i], Quaternion.identity);
+            
         }
         for (int i = 1; i <= l2; i++)
         {
             ConnectPoints(locs1[1][i - 1], locs1[1][i]);
             ConnectPoints(locs2[0][i - 1], locs2[0][i]);
-            //Instantiate(Resources.Load("WallCube"), locs1[1][i], Quaternion.identity);
-            //Instantiate(Resources.Load("WallCube"), locs2[0][i], Quaternion.identity);
         }
-
+        CreatePortals();
 
     }
 
@@ -123,8 +139,10 @@ public class CameraAndGame : MonoBehaviour
         }
         else
         {
+            Debug.Log(score[0]);
             this.time_interval = timeD;
-            Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+            var obj = Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+            obj.GetComponentInChildren<ParticleSystem>().startColor = colors[(int)(Random.Range(0.0f, 2.99f))];
         }
     }
 }

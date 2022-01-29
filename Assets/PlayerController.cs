@@ -19,12 +19,17 @@ public class PlayerController : MonoBehaviour
     public int maxHelp=100;
     public int currentHelp;
     public PlayerBar playerBar;
+    // public PlayerBar playerBar;
+
+    public GameObject BarrierFX;
+    GameObject currentBarrierFX;
 
     void Awake()
     {
         currentHelp = 0;
-        playerBar.SetMaxHelp(maxHelp);
+        playerBar?.SetMaxHelp(maxHelp);
     }
+    
     void Start()
     {
         currentMoveSpeed = desiredMoveSpeed = moveSpeed;
@@ -67,6 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             timeSinceLastWall = 0;
             lastWallPosition = transform.position;
+
+            currentBarrierFX = Instantiate(BarrierFX, transform.position, Quaternion.identity);
         }
         else if (Input.GetKey(WallKey))
         {
@@ -82,9 +89,16 @@ public class PlayerController : MonoBehaviour
                 var size = new Vector3((lastWallPosition - transform.position).magnitude, 1, 0.1f);
                 var obj = Instantiate(barrier, loc, Quaternion.Euler(rotation));
                 obj.transform.localScale = size;
+                obj.GetComponent<Barrier>().player = gameObject.name.Contains("(1)"); //true for second player
 
                 lastWallPosition = transform.position;
             }
+
+            currentBarrierFX.transform.position = transform.position;
+        }
+        else if (Input.GetKeyUp(WallKey))
+        {
+            currentBarrierFX = null;
         }
     }
 
