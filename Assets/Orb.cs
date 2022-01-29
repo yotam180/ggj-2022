@@ -29,7 +29,7 @@ public class Orb : MonoBehaviour
     {
         var reflectionVector = Vector3.Reflect(GetDirection(), other.contacts[0].normal); // TODO: Is this correct?
         direction = VecToAngle(reflectionVector);
-        speed = Mathf.Min(5, speed - 0.02f * Time.deltaTime);
+        // speed = Mathf.Min(5, speed - 0.02f * Time.deltaTime);
 
         // speed = Mathf.Min(speed + 10f, 12f);
     }
