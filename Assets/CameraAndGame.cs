@@ -8,9 +8,11 @@ public class CameraAndGame : MonoBehaviour
     const float width = 2.0f;
 
     const int num_portals = 8;
-    const float timeD = 10f;
+    const float timeD = 5.0f;
     float time_interval = timeD;
-    string[] crystals_map = { "02", "04", "07", "08" }; 
+    string[] crystals_map = { "02", "04", "07", "08" };
+
+    Color[] colors = { Color.red, Color.white, Color.yellow };
 
     List<List<Vector3>> create_map(float[] xrange, float[] yrange, float shiftx = .0f, float shifty = .0f, int direction=1)
     {
@@ -89,7 +91,8 @@ public class CameraAndGame : MonoBehaviour
         {
             float x = 2.5f * Random.Range(-10.0f, 10.0f);
             float y = 2.5f * Random.Range(-10.0f, 10.0f);
-            Instantiate(Resources.Load("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
+            GameObject obj = Instantiate(Resources.Load<GameObject>("Crystalsv" + crystals_map[i % 4]), new Vector3(x, 0, y), Quaternion.identity);
+            obj.GetComponent<portals>().explosion = GameObject.Find("Explosion");
         }
     }
 
@@ -101,7 +104,6 @@ public class CameraAndGame : MonoBehaviour
     {
         int[] s = { 0, 0 };
         score = s;
-        Debug.Log(score.Length);
         float length = 45.0f;
         float[] xrange = { .0f, length * 1.5f}, yrange = { .0f, length * 1.5f };
         List<List<Vector3>> locs1 = create_map(xrange, yrange, -length/3, -length/3);
@@ -139,7 +141,8 @@ public class CameraAndGame : MonoBehaviour
         {
             Debug.Log(score[0]);
             this.time_interval = timeD;
-            Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+            var obj = Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
+            obj.GetComponentInChildren<ParticleSystem>().startColor = colors[(int)(Random.Range(0.0f, 2.99f))];
         }
     }
 }
