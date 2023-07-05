@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CameraAndGame : MonoBehaviour
 {
+    [SerializeField] OrbObjectPooler _orbObjectPooler;
     public int[] score = { 0, 0 };
     const float width = 2.0f;
 
@@ -145,19 +146,14 @@ public class CameraAndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dx = 2*Random.Range(-10.0f, 10.0f);
-        float dy = 2*Random.Range(-10.0f, 10.0f);
-
         if (this.time_interval > 0.0f)
-        {
             this.time_interval -= Time.deltaTime;
-        }
+
         else
         {
             // SoundsManager.PlaySound("orbHit");
             this.time_interval = timeD;
-            var obj = Instantiate(Resources.Load<GameObject>("Orb"), new Vector3(dx, 0, dy), Quaternion.identity);
-            obj.GetComponentInChildren<ParticleSystem>().startColor = colors[(int)(Random.Range(0.0f, 2.99f))];
+            _orbObjectPooler.PullAndActiveOrb();
         }
     }
 }
